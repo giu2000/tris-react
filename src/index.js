@@ -37,7 +37,7 @@ class Game extends React.Component{
         const squares = current.squares.slice(); // copia dell' array che rappresenta la board
         let positionChanged = current.positionChanged.slice();
         const winner = calculateWinner(squares);
-        if(!(Object.entries(winner).length === 0 && winner.constructor === Object)|| squares[i]){
+        if(winner.line || squares[i]){
             return;
         }
 
