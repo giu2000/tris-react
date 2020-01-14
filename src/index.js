@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Board} from './board.js'
+import {Board} from './Board.js'
 import {calculateWinner} from './utils.js'
 import './index.css';
 
@@ -36,8 +36,8 @@ class Game extends React.Component{
         const current = history[history.length-1];
         const squares = current.squares.slice(); // copia dell' array che rappresenta la board
         let positionChanged = current.positionChanged.slice();
-        
-        if(calculateWinner(squares) || squares[i]){
+        const winner = calculateWinner(squares);
+        if(!(Object.entries(winner).length === 0 && winner.constructor === Object)|| squares[i]){
             return;
         }
 
@@ -68,9 +68,9 @@ class Game extends React.Component{
         let {history, stepNumber} = this.state;
 
         const current = history[stepNumber]; //oggetto che rappresenta la board corrente
-        const winner = calculateWinner(current.squares);
+        const winner = calculateWinner(current.squares); // object with valueSquare and line
         let status = winner 
-            ? `Winner: ${current.squares[winner[0]]}` 
+            ? `Winner: ${winner.valueSquare}` 
             : stepNumber === 9 
                 ? 'Nobody wins' 
                 :`Next player: ${this.state.xIsNext ? "X" : "O"}`
@@ -87,14 +87,12 @@ class Game extends React.Component{
         });
         moves = this.state.valueSelect === 'cresc' ? moves : moves.reverse();
 
-
-      
         return(
             <div className='game'>
                 <div className='game-board'>
                     <Board 
                         squares = {current.squares}
-                        winner = {winner}
+                        winnerLine = {winner.line}
                         onClick = {i => this.handleClick(i)}
                     />
                 </div>

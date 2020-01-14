@@ -1,5 +1,5 @@
 import React from 'react';
-import Square from './square.js';
+import Square from './Square.js';
 
 export class Board extends React.Component{
     
@@ -9,7 +9,7 @@ export class Board extends React.Component{
                 key = {i}
                 value = {this.props.squares[i]}
                 onClick = {() => this.props.onClick(i)}
-                winner = {this.props.winner}
+                winnerLine = {this.props.winnerLine}
                 index = {i}
             />
         )
