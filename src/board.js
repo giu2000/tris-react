@@ -1,7 +1,7 @@
 import React from 'react';
 import Square from './Square.js';
 
-export class Board extends React.Component{
+export default class Board extends React.Component{
     
     renderSquare(i){
         const {squares, onClick, winnerLine} = this.props;
@@ -21,6 +21,5 @@ export class Board extends React.Component{
              <div key={index} className='board-row'>
                 {row.map(el => this.renderSquare(el))}
         </div>))
-  
     }
 }
