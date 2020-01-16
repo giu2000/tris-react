@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import {Board} from './Board.js'
-import {calculateWinner} from './utils.js'
+import Board from './board.js';
+import SelectComponent from './Select.js';
+import { calculateWinner } from './utils.js'
 import './index.css';
-
-
 
 class Game extends React.Component{
     constructor(props){
@@ -64,6 +63,21 @@ class Game extends React.Component{
         this.setState({valueSelect: event.target.value});
     }
 
+    renderMoves(){
+        const {history} = this.state;
+        let moves = history.map((step, indexStep) => {
+            const rowIndex = history[indexStep].positionChanged[0];
+            const colIndex = history[indexStep].positionChanged[1];
+            const desc = indexStep ? `Go to move #${indexStep}. Changed element in row: ${rowIndex} and col: ${colIndex} ` : 'Go to start';
+            return(
+                <li key={indexStep}>
+                    <button onClick={() => this.jumpTo(indexStep)}>{desc}</button>
+                </li>
+            )
+        })
+        return moves;
+    }
+
     render(){
         let {history, stepNumber} = this.state;
 
@@ -75,16 +89,7 @@ class Game extends React.Component{
                 ? 'Nobody wins' 
                 :`Next player: ${this.state.xIsNext ? "X" : "O"}`
 
-        let moves = history.map((step, indexStep) => {
-            const rowIndex = history[indexStep].positionChanged[0];
-            const colIndex = history[indexStep].positionChanged[1];
-            const desc = indexStep ? `Go to move #${indexStep}. Changed element in row: ${rowIndex} and col: ${colIndex} ` : 'Go to start';
-            return(
-                <li key={indexStep}>
-                    <button onClick={() => this.jumpTo(indexStep)}>{desc}</button>
-                </li>
-            )
-        });
+        let moves = this.renderMoves();
         moves = this.state.valueSelect === 'cresc' ? moves : moves.reverse();
 
         return(
@@ -98,13 +103,10 @@ class Game extends React.Component{
                 </div>
                 <div className = 'game-info'>
                     <div>{status}</div>
-                    <select
+                    <SelectComponent
                         value = {this.state.valueSelect}
                         onChange = {this.handleChange}
-                        >
-                        <option value='decr'>Decresc</option>
-                        <option value='cresc'>Cresc</option>
-                    </select>
+                    />
                     <ol>{moves}</ol>
                 </div>
             </div>
