@@ -1,7 +1,15 @@
 import React from 'react';
-import Square from './Square.js';
+import PropTypes from 'prop-types';
+import Square from './square.js';
 
-export class Board extends React.Component{
+
+export default class Board extends React.Component{
+
+    static propTypes = {
+        squares: PropTypes.array,
+        onClick: PropTypes.func,
+        winnerLine: PropTypes.array
+    }
     
     renderSquare(i){
         const {squares, onClick, winnerLine} = this.props;

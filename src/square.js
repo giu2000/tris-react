@@ -1,4 +1,5 @@
 import React from 'react';
+import PropTypes from 'prop-types';
 
 const Square = (props) => {
     return(
@@ -8,5 +9,11 @@ const Square = (props) => {
             onClick = {props.onClick}
         >{props.value}</button>
     )
+}
+
+Square.propsTypes = {
+    winnerLine: PropTypes.array,
+    index: PropTypes.number,
+    onClick: PropTypes.func
 }
 export default Square;
