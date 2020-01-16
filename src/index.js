@@ -83,10 +83,10 @@ class Game extends React.Component{
 
         const current = history[stepNumber]; //oggetto che rappresenta la board corrente
         const winner = calculateWinner(current.squares); // object with valueSquare and line
-        let status = winner 
-            ? `Winner: ${winner.valueSquare}` 
-            : stepNumber === 9 
-                ? 'Nobody wins' 
+        let status = winner.winnerLine
+            ? `Winner: ${winner.valueSquare}`
+            : stepNumber === 9
+                ? 'Nobody wins'
                 :`Next player: ${this.state.xIsNext ? "X" : "O"}`
 
         let moves = this.renderMoves();
@@ -95,7 +95,7 @@ class Game extends React.Component{
         return(
             <div className='game'>
                 <div className='game-board'>
-                    <Board 
+                    <Board
                         squares = {current.squares}
                         winnerLine = {winner.line}
                         onClick = {i => this.handleClick(i)}
