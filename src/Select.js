@@ -1,10 +1,7 @@
-import React from 'react'
+import React from 'react';
 
-class SelectComponent extends React.Component{
-    constructor(props){
-        super(props);
-    }
-    render(){
+export default class SelectComponent extends React.Component{
+   render(){
         return(
             <select
                 value = {this.props.value} //valore attuale della select
@@ -16,4 +13,3 @@ class SelectComponent extends React.Component{
         )
     }
 }
-export default SelectComponent;
