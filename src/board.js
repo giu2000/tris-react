@@ -2,6 +2,10 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import Square from './square.js';
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> add PropType and minor fix status
 export default class Board extends React.Component{
 
     static propTypes = {
@@ -9,8 +13,12 @@ export default class Board extends React.Component{
         onClick: PropTypes.func,
         winnerLine: PropTypes.array
     }
+<<<<<<< HEAD
 
     // TODO: check winnerLine
+=======
+    
+>>>>>>> add PropType and minor fix status
     renderSquare(i){
         const {squares, onClick, winnerLine} = this.props;
         return (
