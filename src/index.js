@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+
 import Board from './board.js';
 import SelectComponent from './Select.js';
-import { calculateWinner } from './utils.js'
+import {calculateWinner} from './utils.js';
+
 import './index.css';
 
 class Game extends React.Component{
@@ -64,7 +66,7 @@ class Game extends React.Component{
     }
 
     renderMoves(){
-        const {history} = this.state;
+        const { history } = this.state;
         let moves = history.map((step, indexStep) => {
             const rowIndex = history[indexStep].positionChanged[0];
             const colIndex = history[indexStep].positionChanged[1];
@@ -83,7 +85,7 @@ class Game extends React.Component{
 
         const current = history[stepNumber]; //oggetto che rappresenta la board corrente
         const winner = calculateWinner(current.squares); // object with valueSquare and line
-        let status = winner.winnerLine
+        let status = winner.line
             ? `Winner: ${winner.valueSquare}`
             : stepNumber === 9
                 ? 'Nobody wins'
