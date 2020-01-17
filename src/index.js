@@ -1,17 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-<<<<<<< HEAD
-=======
-import Board from './board.js'
-import {calculateWinner} from './utils.js'
-import './index.css';
->>>>>>> add PropType and minor fix status
 
 import Board from './board.js';
 import SelectComponent from './Select.js';
 import {calculateWinner} from './utils.js';
 
 import './index.css';
+
 
 class Game extends React.Component{
     constructor(props){
@@ -71,22 +66,8 @@ class Game extends React.Component{
         this.setState({valueSelect: event.target.value});
     }
 
-<<<<<<< HEAD
     renderMoves(){
         const { history } = this.state;
-=======
-    render(){
-        let {history, stepNumber} = this.state;
-
-        const current = history[stepNumber]; //oggetto che rappresenta la board corrente
-        const winner = calculateWinner(current.squares); // object with valueSquare and line
-        let status = winner.winnerLine
-            ? `Winner: ${winner.valueSquare}` 
-            : stepNumber === 9 
-                ? 'Nobody wins' 
-                :`Next player: ${this.state.xIsNext ? "X" : "O"}`
-
->>>>>>> add PropType and minor fix status
         let moves = history.map((step, indexStep) => {
             const rowIndex = history[indexStep].positionChanged[0];
             const colIndex = history[indexStep].positionChanged[1];

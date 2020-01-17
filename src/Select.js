@@ -9,18 +9,11 @@ export default class SelectComponent extends React.Component{
     }
 
    render(){
-<<<<<<< HEAD
        const {value, onChange} = this.props;
         return(
             <select
                 value = {value} //valore attuale della select
                 onChange = {onChange} //metodo da chiamare quando viene selezionata
-=======
-        return(
-            <select
-                value = {this.props.value} //valore attuale della select
-                onChange = {this.props.onChange} //metodo da chiamare quando viene selezionata
->>>>>>> add PropType and minor fix status
             >
                 <option value='decr'>Decresc</option>
                 <option value='cresc'>Cresc</option>
@@ -28,8 +21,4 @@ export default class SelectComponent extends React.Component{
         )
     }
 }
-<<<<<<< HEAD
 
-
-=======
->>>>>>> add PropType and minor fix status
