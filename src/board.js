@@ -1,8 +1,16 @@
 import React from 'react';
-import Square from './Square.js';
+import PropTypes from 'prop-types';
+import Square from './square.js';
 
 export default class Board extends React.Component{
-    
+
+    static propTypes = {
+        squares: PropTypes.array,
+        onClick: PropTypes.func,
+        winnerLine: PropTypes.array
+    }
+
+    // TODO: check winnerLine
     renderSquare(i){
         const {squares, onClick, winnerLine} = this.props;
         return (
