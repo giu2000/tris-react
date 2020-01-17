@@ -1,8 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import Board from './board.js'
+import SelectComponent from './Select.js'
 import {calculateWinner} from './utils.js'
 import './index.css';
+
 
 
 
@@ -69,7 +71,7 @@ class Game extends React.Component{
 
         const current = history[stepNumber]; //oggetto che rappresenta la board corrente
         const winner = calculateWinner(current.squares); // object with valueSquare and line
-        let status = winner.winnerLine
+        let status = winner.line
             ? `Winner: ${winner.valueSquare}` 
             : stepNumber === 9 
                 ? 'Nobody wins' 
@@ -98,13 +100,10 @@ class Game extends React.Component{
                 </div>
                 <div className = 'game-info'>
                     <div>{status}</div>
-                    <select
+                    <SelectComponent 
                         value = {this.state.valueSelect}
                         onChange = {this.handleChange}
-                        >
-                        <option value='decr'>Decresc</option>
-                        <option value='cresc'>Cresc</option>
-                    </select>
+                    />
                     <ol>{moves}</ol>
                 </div>
             </div>
