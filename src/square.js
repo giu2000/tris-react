@@ -2,7 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const Square = (props) => {
-    const {winnerLine, index, onClick, value} = this.props;
+    const {winnerLine, index, onClick, value} = props;
     return(
         <button 
             style = {winnerLine && winnerLine.includes(index) ? {color: 'red'} : {}}
@@ -13,9 +13,9 @@ const Square = (props) => {
 }
 
 Square.propsTypes = {
-    winnerLine: PropTypes.array,
-    index: PropTypes.number,
-    onClick: PropTypes.func,
-    value: PropTypes.number
+    winnerLine: PropTypes.array.isRequired,
+    index: PropTypes.number.isRequired,
+    onClick: PropTypes.func.isRequired,
+    value: PropTypes.number.isRequired
 }
 export default Square;

@@ -6,9 +6,9 @@ import Square from './square.js';
 export default class Board extends React.Component{
 
     static propTypes = {
-        squares: PropTypes.array,
-        onClick: PropTypes.func,
-        winnerLine: PropTypes.array
+        squares: PropTypes.array.isRequired,
+        onClick: PropTypes.func.isRequired,
+        winnerLine: PropTypes.array.isRequired
     }
     
     renderSquare(i){
