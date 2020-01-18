@@ -3,10 +3,12 @@ import ReactDOM from 'react-dom';
 
 import Board from './board.js';
 import SelectComponent from './Select.js';
-import {calculateWinner} from './utils.js';
+import MovesList from './MovesList.js';
+import PlayStatus from './PlayStatus.js';
+import {calculateWinner, calculateIndexesOfMove} from './utils.js';
+
 
 import './index.css';
-
 
 class Game extends React.Component{
     constructor(props){
@@ -18,33 +20,27 @@ class Game extends React.Component{
                     positionChanged: Array(2).fill(null)
                 }
             ],
-            stepNumber: 0, //contatore di mosse, indica il numero dell' ultima mossa
+            stepNumber: 0, //contatore di mosse, indica il numero dell' ultima mossa. VALUTARE DI TOGLIERLO
             xIsNext: true, //serve per determinare il prossimo simbolo da stampare, X or O
-            valueSelect: 'cresc'
+            valueSelect: 'cresc' //VALUTARE DI FARE UN OGGETTO GAME-INFO E DI METTERLO NEL SUO STATO
         }
         this.handleChange = this.handleChange.bind(this);
     }
 
-    positioMove(index){
-        const rows = [[0, 1, 2], [3, 4, 5], [6, 7, 8]]; //TODO
-        let rowIndex = rows.findIndex(row => row.includes(index)) +1;
-        let colIndex = rows[rows.findIndex(row => row.includes(index))].indexOf(index) +1;
-        return [rowIndex, colIndex ]
-    }
-
     handleClick(i){
-        const {stepNumber, xIsNext} = this.state;
-        const history = this.state.history.slice(0, stepNumber + 1);
+        let {stepNumber, xIsNext, history} = this.state;
+        history = history.slice(0, stepNumber + 1);
         const current = history[history.length-1];
         const squares = current.squares.slice(); // copia dell' array che rappresenta la board
         let positionChanged = current.positionChanged.slice();
         const winner = calculateWinner(squares);
+       
         if(winner.line || squares[i]){
             return;
         }
 
         squares[i] = xIsNext ? 'X' : 'O';
-        positionChanged = this.positioMove(i);
+        positionChanged = calculateIndexesOfMove(i)
         this.setState({
             history : history.concat([{
                 squares: squares,
@@ -106,16 +102,27 @@ class Game extends React.Component{
                 </div>
                 <div className = 'game-info'>
                     <div>{status}</div>
-                    <SelectComponent
+                    
+                    <PlayStatus 
+                        winner = {winner}
+                        moveNumber = {this.state.stepNumber}
+                        xIsNext = {this.state.xIsNext}
+                    />
+                    <SelectComponent 
                         value = {this.state.valueSelect}
                         onChange = {this.handleChange}
                     />
-                    <ol>{moves}</ol>
+                    <MovesList  
+                        history = {this.state.history}
+                        valueSelect = {this.state.valueSelect}
+                        onClick = {(index) => this.jumpTo(index)}
+                    />
                 </div>
             </div>
         )
     }
 }
+
 ReactDOM.render(
     <Game />,
     document.getElementById('root'),
