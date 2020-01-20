@@ -5,8 +5,8 @@ const SelectComponent = (props) => {
     const {value, onChange} = props;
     return(
         <select
-            value = {value} //valore attuale della select
-            onChange = {onChange} //metodo da chiamare quando viene selezionata
+            value = {value} 
+            onChange = {onChange} 
             >
             <option value='decr'>Decresc</option>
             <option value='cresc'>Cresc</option>
