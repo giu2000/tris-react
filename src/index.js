@@ -13,13 +13,13 @@ class Game extends React.Component{
         this.state = {
             history: [
                 {
-                    squares: Array(9).fill(null), //ogni squares rappresenta la traslazione in array della situazione della griglia
+                    squares: Array(9).fill(null), 
                     positionChanged: Array(2).fill(null)
                 }
             ],
-            stepNumber: 0, //contatore di mosse, indica il numero dell' ultima mossa. VALUTARE DI TOGLIERLO
-            xIsNext: true, //serve per determinare il prossimo simbolo da stampare, X or O
-            valueSelect: 'cresc' //VALUTARE DI FARE UN OGGETTO GAME-INFO E DI METTERLO NEL SUO STATO
+            stepNumber: 0, 
+            xIsNext: true, 
+            valueSelect: 'cresc' 
         }
         this.handleChange = this.handleChange.bind(this);
     }
@@ -28,7 +28,7 @@ class Game extends React.Component{
         let {stepNumber, xIsNext, history} = this.state;
         history = history.slice(0, stepNumber + 1);
         const current = history[history.length-1];
-        const squares = current.squares.slice(); // copia dell' array che rappresenta la board
+        const squares = current.squares.slice(); 
         let positionChanged = current.positionChanged.slice();
         const winner = calculateWinner(squares);
        
@@ -42,8 +42,8 @@ class Game extends React.Component{
             history : history.concat([{
                 squares: squares,
                 positionChanged: positionChanged
-            }]), //concateno alla history il nuovo oggettp che rappresenta l'ultima board aggiornata
-            stepNumber: history.length, //aggiorno il valore di step numebr
+            }]), 
+            stepNumber: history.length, 
             xIsNext: !this.state.xIsNext
         })
     }
@@ -62,8 +62,8 @@ class Game extends React.Component{
     render(){
         let {history, stepNumber} = this.state;
 
-        const current = history[stepNumber]; //oggetto che rappresenta la board corrente
-        const winner = calculateWinner(current.squares); // object with valueSquare and line
+        const current = history[stepNumber]; 
+        const winner = calculateWinner(current.squares); 
 
         return(
             <div className='game'>
