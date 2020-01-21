@@ -13,8 +13,8 @@ class Game extends React.Component{
         this.state = {
             history: [
                 {
-                    squares: Array(9).fill(null), 
-                    positionChanged: Array(2).fill(null)
+                 squares: Array(9).fill(null), 
+                 positionChanged: Array(2).fill(null)
                 }
             ],
             stepNumber: 0, 
@@ -60,7 +60,7 @@ class Game extends React.Component{
     }
 
     render(){
-        let {history, stepNumber} = this.state;
+        let {history, stepNumber, valueSelect, xIsNext} = this.state;
 
         const current = history[stepNumber]; 
         const winner = calculateWinner(current.squares); 
@@ -77,16 +77,16 @@ class Game extends React.Component{
                 <div className = 'game-info'>
                     <PlayStatus 
                         winner = {winner}
-                        moveNumber = {this.state.stepNumber}
-                        xIsNext = {this.state.xIsNext}
+                        moveNumber = {stepNumber}
+                        xIsNext = {xIsNext}
                     />
                     <SelectComponent 
-                        value = {this.state.valueSelect}
+                        value = {valueSelect}
                         onChange = {this.handleChange}
                     />
                     <MovesList  
-                        history = {this.state.history}
-                        valueSelect = {this.state.valueSelect}
+                        history = {history}
+                        valueSelect = {valueSelect}
                         onClick = {(index) => this.jumpTo(index)}
                     />
                 </div>

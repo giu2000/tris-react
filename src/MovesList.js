@@ -2,9 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 const ButtonListComponent = (props) => {
-    
     const {description, onClick} = props;
-    
     return(
         <button onClick={onClick}>
             {description}
