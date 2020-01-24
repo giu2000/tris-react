@@ -88,7 +88,7 @@ class Game extends React.Component{
                 <div className='game-board'>
                     <Board
                         squares = {current.squares}
-                        winnerLine = {winner.line}
+                        winnerLine =  {winner.line || []}
                         onClick = {i => this.handleClick(i)}
                     />
                 </div>
@@ -109,6 +109,7 @@ class Game extends React.Component{
                         valueSelect = {valueSelect}
                         onClick = {(index) => this.jumpTo(index)}
                     />
+
                 </div>
             </div>
         )
