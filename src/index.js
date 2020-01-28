@@ -92,8 +92,7 @@ class Game extends React.Component{
                     />
                 </div>
                 <div className = 'game-info'>
-                    <div>{status}</div>
-                    
+                                   
                     <PlayStatus 
                         winner = {winner}
                         moveNumber = {stepNumber}
