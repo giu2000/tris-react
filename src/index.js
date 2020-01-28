@@ -7,7 +7,6 @@ import MovesList from './MovesList.js';
 import PlayStatus from './PlayStatus.js';
 import {calculateWinner, calculateIndexesOfMove} from './utils.js';
 
-
 import './index.css';
 
 class Game extends React.Component{
